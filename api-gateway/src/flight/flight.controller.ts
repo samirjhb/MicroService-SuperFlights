@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { FlightMSG, PassengerMSG } from 'src/common/constants';
 import { IFlight } from 'src/common/interfaces/flight.interface';
 import { ClientProxySuperFlights } from 'src/common/proxy/client-proxy';
@@ -8,6 +9,7 @@ import { FlightDTO } from './dto/flight.dto';
 
 
 @ApiTags('flights') // Tags de vuelos
+@UseGuards(JwtAuthGuard)  // proteccion del controlador 
 @Controller('api/v2/flight')
 export class FlightController {
 

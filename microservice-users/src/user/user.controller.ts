@@ -42,4 +42,21 @@ export class UserController {
 
     }
 
+
+
+     //Metodo para validar user
+     @MessagePattern(UserMSG.VALID_USER) 
+     async validateUser(@Payload() payload): Promise<any> {
+        const user = await this.userService.findByUsername(payload.username);
+        const isValidPassword = await this.userService.checkPassword(
+            payload.password,
+            user.password,
+        );
+
+        //validacion
+        if (user && isValidPassword) return user;
+
+        return null;
+    }
+
 }

@@ -9,6 +9,7 @@ import { FlightModule } from './flight/flight.module';
 import { UserController } from './user/user.controller';
 import { FlightController } from './flight/flight.controller';
 import { ProxyModule } from './common/proxy/proxy-module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   //Configuracion de Config Module  para poder importar nuestro archivo de variable de entorno
@@ -20,7 +21,8 @@ import { ProxyModule } from './common/proxy/proxy-module';
     UserModule,
     PassengerModule,
     FlightModule,
-    ProxyModule
+    ProxyModule,
+    AuthModule
 
   ],
   controllers: [AppController, PassengerController, UserController, FlightController],
